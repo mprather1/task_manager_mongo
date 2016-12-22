@@ -150,15 +150,6 @@ function removeTask(req, res){
   })
 }
 
-
-function getNextSequence(name){
-  var ret = Task.findAndModify({
-    query: { _id: name },
-    update: { $inc: { seq: 1 } },
-    new: true
-  })
-  return ret.seq
-}
 module.exports = {
   
   // Users

@@ -5,7 +5,6 @@ File.open('seeds/tasks.json', 'w') do |file|
 file.puts('[')  
 8.times do
   @location_number = Faker::Number.number(3)
-  @project = Faker::Name.last_name
   @descrip = Faker::Hacker.say_something_smart
   @requestor = Faker::Name.name
   @assigned_to = Faker::Name.name
@@ -15,7 +14,7 @@ file.puts('[')
   my_hash = {
     completed: false,
     location_number: @location_number,
-    project: @project,
+    project: "project",
     descrip: @descrip,
     priority: "low",
     requestor: @requestor,
@@ -28,7 +27,6 @@ end
 
 8.times do
   @location_number = Faker::Number.number(3)
-  @project = Faker::Name.last_name
   @descrip = Faker::Hacker.say_something_smart
   @requestor = Faker::Name.name
   @assigned_to = Faker::Name.name
@@ -38,7 +36,7 @@ end
   my_hash = {
     completed: true,
     location_number: @location_number,
-    project: @project,
+    project: "task",
     descrip: @descrip,
     priority: "high",
     requestor: @requestor,
