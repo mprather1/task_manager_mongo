@@ -36,7 +36,6 @@ var TaskModalView = Backbone.Marionette.View.extend({
     });
     this.model.collection.remove(this.model);
     this.completedTasks.add(this.model);
-    Backbone.history.navigate('tasks/completed', { trigger: true });
   },
   
   serializeData: function(){

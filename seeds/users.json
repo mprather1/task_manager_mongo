@@ -1,3 +1,12 @@
 [
-  {"username":"username", "password":"$2a$10$h4MSX2LjFZGP2diNgFQPJ.762Y7dK5XlCfxXLwUJra4UUb0qPt3Ju", "first_name":"first_name", "last_name":"last_name", "email":"email@email.com"}
+{"first_name":"Roosevelt","last_name":"Mayer","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"buck.bergstrom","email":"roosevelt@example.net"},
+{"first_name":"Jordon","last_name":"Parker","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"casimer.runte","email":"jordon@example.net"},
+{"first_name":"Muriel","last_name":"Gerhold","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"laverne","email":"muriel@example.org"},
+{"first_name":"Yazmin","last_name":"Krajcik","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"garrison.stokes","email":"yazmin@example.com"},
+{"first_name":"Kristofer","last_name":"Schulist","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"simeon","email":"kristofer@example.com"},
+{"first_name":"Paige","last_name":"Hermiston","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"jordi_christiansen","email":"paige@example.com"},
+{"first_name":"Berniece","last_name":"Hansen","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"jacinthe","email":"berniece@example.org"},
+{"first_name":"Marshall","last_name":"Hilpert","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"cedrick","email":"marshall@example.com"},
+{"first_name":"Michael","last_name":"Prather","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"mprather","email":"mike@example.net"},
+{"first_name":"Kill","last_name":"Bill","password":"$2a$10$Y0jvpVrZtzcJoXATFT.FP.axRmIPDckJZsDx3dRcajnrZQo5uHtZi","username":"killbill","email":"killbill@example.com"}
 ]

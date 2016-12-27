@@ -37,24 +37,17 @@ app.use(session({
   saveUninitialized: false
 }));
 
-require('./authentication').init(app, passport)
+require('./authentication').init(app, passport);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api', routes);
 
-app.get('/auth', function(req, res, next) {
-  res.sendfile('login.html');
-});
-
-app.get('/loginSuccess', function(req, res, next) {
-  res.sendfile('success.html');
-});
 app.get('/loginFailure', function(req, res, next) {
-  res.sendfile('failure.html');
+  res.sendFile('failure.html', { root: './' });
 });
 
 app.post('/login', passport.authenticate('local', {

@@ -5,102 +5,151 @@ var Task = require("./db/models/Task");
 /////////////////////////////////////////////////////////////////
 
 function getAllUsers(req, res){
-  User.find(function(err, user){
-    if (err){ res.send(err); }
-    res.json(user);
-  });
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    User.find(function(err, user){
+      if (err){ res.send(err); }
+      res.json(user);
+    });
+  }
 }
 
 function getSingleUser(req, res){
-  User.findById(req.params.id, function(err, user){
-    if (err){ res.send(err); }
-    res.status(200)
-    .json(user);
-  });
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    User.findById(req.params.id, function(err, user){
+      if (err){ res.send(err); }
+      res.status(200)
+      .json(user);
+    });
+  }
 }
 
 function createUser(req, res){
-  var user = new User();
-  user.username = req.body.username;
-  user.password = user.generateHash(req.body.password);
-  user.email = req.body.email;
-  user.first_name = req.body.first_name;
-  user.last_name = req.body.last_name;
-  user.save(function(err){
-    if(err){ res.send(err) }    
-    res.status(200)
-      .json({ 
-        status: 'success', 
-        message: "Created one user..."
-      })
-  })
-}
-
-function updateUser(req, res){
-  User.findById(req.params.id, function(err, user){
-    if (err){ res.send(err) }
-    user.password = req.body.password;
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {
+    var user = new User();
+    user.username = req.body.username;
+    user.password = user.generateHash(req.body.password);
+    user.email = req.body.email;
+    user.first_name = req.body.first_name;
+    user.last_name = req.body.last_name;
     user.save(function(err){
-      if (err){ res.send(err); }
+      if(err){ res.send(err) }    
       res.status(200)
         .json({ 
           status: 'success', 
-          message: "User updated..." 
-        });
+          message: "Created one user..."
+        })
+    })
+  }
+}
+
+function updateUser(req, res){
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    User.findById(req.params.id, function(err, user){
+      if (err){ res.send(err) }
+      user.password = req.body.password;
+      user.save(function(err){
+        if (err){ res.send(err); }
+        res.status(200)
+          .json({ 
+            status: 'success', 
+            message: "User updated..." 
+          });
+      });
     });
-  });
-  
+  }
 }
 
 function removeUser(req, res){
-  User.remove({
-    _id: req.params.id
-  }, function(err, user){
-    if (err){ res.send(err) }
-    res.status(200)
-      .json({
-        status: 'success', 
-        message: 'User deleted...'
-      })
-  })
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    User.remove({
+      _id: req.params.id
+    }, function(err, user){
+      if (err){ res.send(err) }
+      res.status(200)
+        .json({
+          status: 'success', 
+          message: 'User deleted...'
+        })
+    })
+  }
 }
 
 // Users
 /////////////////////////////////////////////////////////////////
 
 function getAllTasks(req, res){
-  Task.find(function(err, task){
-    if(err){ res.send(err) }
-    res.status(200)
-      .json(task)
-  })
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    Task.find(function(err, task){
+      if(err){ res.send(err) }
+      res.status(200)
+        .json(task)
+    })
+  }
 }
 
 function getCompletedTasks(req, res){
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {
+
   Task.find({ completed: true }, function(err, task){
     if(err){ res.send(err) }
     res.status(200)
       .json(task)
   })
+  }
 }
 
 function getActiveTasks(req, res){
-  Task.find({ completed: false }, function(err, task){
-    if(err){ res.send(err) }
-    res.status(200)
-      .json(task)
-  })
-}
-
-function getSingleTask(req, res){
-  User.findById(req.params.id, function(err, task) {
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    Task.find({ completed: false }, function(err, task){
       if(err){ res.send(err) }
       res.status(200)
         .json(task)
-  })
+    })
+  }
+}
+
+function getSingleTask(req, res){
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    User.findById(req.params.id, function(err, task) {
+        if(err){ res.send(err) }
+        res.status(200)
+          .json(task)
+    })
+  }
 }
 
 function createTask(req, res){
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
   var task = new Task();
   task.completed = false;
   task.location_number = req.body.location_number;
@@ -118,36 +167,46 @@ function createTask(req, res){
         status: 'success', 
         message: "Updated user"
       })
-  })
+    })
+  }
 }
 
 function updateTask(req, res){
-  Task.findById(req.params.id, function(err, task){
-    if (err){ res.send(err) }
-    task.completed = req.body.completed;
-    task.save(function(err){
-      if (err){ res.send(err); }
-      res.status(200)
-        .json({ 
-          status: 'success',
-          message: "Task completed..."
-        });
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    Task.findById(req.params.id, function(err, task){
+      if (err){ res.send(err) }
+      task.completed = req.body.completed;
+      task.save(function(err){
+        if (err){ res.send(err); }
+        res.status(200)
+          .json({ 
+            status: 'success',
+            message: "Task completed..."
+          });
+      });
     });
-  });
-  
+  }
 }
 
 function removeTask(req, res){
-  Task.remove({
-    _id: req.params.id
-  }, function(err, task){
-    if (err){ res.send(err) }
-    res.status(200)
-      .json({ 
-        status: 'success',
-        message: 'Task deleted...'
-      })
-  })
+  if (req.session.passport === undefined){
+    res.status(401)
+      .send('Not authorized')
+  } else {  
+    Task.remove({
+      _id: req.params.id
+    }, function(err, task){
+      if (err){ res.send(err) }
+      res.status(200)
+        .json({ 
+          status: 'success',
+          message: 'Task deleted...'
+        })
+    })
+  }
 }
 
 module.exports = {
