@@ -22,7 +22,7 @@ _.extend(Backbone.Validation.callbacks, {
 var originalSync = Backbone.sync;
 Backbone.sync = function(method, model, options){
   var deferred = $.Deferred();
-  options || (options = {});
+  // options || (options = {});
   deferred.then(options.success, options.error);
   
   var response = originalSync(method, model, _.omit(options, 'success', 'error'));
@@ -30,15 +30,15 @@ Backbone.sync = function(method, model, options){
   response.done(deferred.resolve);
   response.fail(function(){
     if(response.status == 401){
-      Backbone.history.navigate('#login', { trigger: true })
+      Backbone.history.navigate('#login', { trigger: true });
     } else if (response.status === 403){
       alert(response.responseJSON.message);
     } else {
-      deferred.rejectWith(response, arguments)
+      deferred.rejectWith(response, arguments);
     }
   });
   return deferred.promise();
-}
+};
 
 var app = new App();
 
