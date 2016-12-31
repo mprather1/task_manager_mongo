@@ -38,7 +38,8 @@ var FormModalView = Backbone.Marionette.View.extend({
     this.showChildView('userRadio', new UsersView({
       collection: this.users
     }));
-    this.$('.datepicker').datepicker();        
+    this.$('.datepicker').datepicker();
+    this.$('.user-picker').selectmenu(); 
     window.history.back();
     
   },
@@ -52,11 +53,12 @@ var FormModalView = Backbone.Marionette.View.extend({
       project: $('[name="project-radio"]:radio:checked').val(),
       descrip: $('#description_input').val(),
       priority: $('[name="priority-radio"]:radio:checked').val(),
-      requestor: $('#requestor_input').val(),
-      assigned_to: $('input[name="assigned-radio"]:radio:checked').val(),
+      assigned_to: $('option[name="user"]:selected').val(),
       due_date: $('#due_date_input').val(),
       notes: $('#notes_input').val()
     };
+    
+    console.log($('option[name="user"]:selected').val())
     
     this.model.set(taskAttrs);
     if(this.model.isValid(true)){
