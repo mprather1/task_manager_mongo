@@ -58,6 +58,11 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/loginFailure'
 }));
 
+app.get('/session', function(req, res, next){
+  res.json(req.session)
+  next()
+})
+
 app.use(express.static(path.join(__dirname, 'app/static')));
 
 var server = app.listen(port, function(){

@@ -1,7 +1,8 @@
 require('jquery');
 require('jquery-ui'); 
 require('bootstrap');
-require("modules/jquery-ui-dist/jquery-ui.min.css");
+require("modules/jquery-ui-dist/jquery-ui.css");
+require("modules/jquery-ui-dist/jquery-ui.theme.css");
 
 var App = require("./App");
 

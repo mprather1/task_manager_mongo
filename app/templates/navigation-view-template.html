@@ -1,4 +1,20 @@
-<div class="navbar-inner">
-  <span class="navbar-brand active"><%= title %></span>
-   <a href="#tasks/new" id="new-task" class="btn btn-info btn-sm">New Task</a>
-</div>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand active"><%- title %></span>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li id="logged-in" class='navbar-brand inactive'></li>
+        <li id="new-task" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#tasks/new">New Task</a></li>
+            <li><a href="#">New User</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>

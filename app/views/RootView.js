@@ -1,5 +1,5 @@
 var NavigationView = require("./NavigationView");
-
+var Session =require("../models/Session");
 var RootView = Backbone.Marionette.View.extend({
  
   tagName: 'container-fluid',
@@ -20,6 +20,7 @@ var RootView = Backbone.Marionette.View.extend({
  
   initialize: function(){
     this.render();
+    this.session = new Session()
   },
  
   onRender: function(){
