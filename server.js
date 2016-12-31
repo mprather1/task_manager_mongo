@@ -4,6 +4,7 @@ var path = require("path");
 var session = require("express-session");
 var RedisStore = require("connect-redis")(session);
 var bodyParser = require("body-parser");
+var helmet = require('helmet')
 var morgan = require("morgan");
 var config = require("./_config");
 var routes = require("./routes");
@@ -23,16 +24,12 @@ mongoose.connect(connectionString, function(err, res){
       console.log("Connected to database: " + connectionString);
   }
 });
-// console.log(process.env.NODE_ENV)
-// if(process.env.NODE_ENV === 'test'){
-//     connection.db.dropDatabase()
-// }
-
-
 
 if (process.env.NODE_ENV === 'development'){
   app.use(morgan('dev'));
 }
+
+app.use(helmet())
 
 app.use(session({
   store: new RedisStore({
@@ -51,11 +48,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api', routes);
-
-// app.use('/', function(req, res, next){
-//   console.log(req.session)
-//   next()
-// })
 
 app.get('/loginFailure', function(req, res, next) {
   res.sendFile('failure.html', { root: './' });
