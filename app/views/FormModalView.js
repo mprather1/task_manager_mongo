@@ -38,6 +38,7 @@ var FormModalView = Backbone.Marionette.View.extend({
     this.showChildView('userRadio', new UsersView({
       collection: this.users
     }));
+    this.$('.datepicker').datepicker();        
     window.history.back();
     
   },

@@ -1,6 +1,8 @@
-global.jQuery = require('jquery');
+require('jquery');
+require('jquery-ui'); 
 require('bootstrap');
-
+require("modules/jquery-ui-dist/jquery-ui.min.css");
+// require("modules/jquery-ui/ui/widgets/datepicker")
 var App = require("./App");
 
 _.extend(Backbone.Validation.callbacks, {

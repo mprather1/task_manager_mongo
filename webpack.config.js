@@ -26,7 +26,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "marionette": "backbone.marionette"
+      "marionette": "backbone.marionette",
+      'jquery-ui': 'jquery-ui-dist/jquery-ui.js',
+      modules: path.join(__dirname, "node_modules"),       
     }
   },
   module: {
@@ -43,9 +45,10 @@ module.exports = {
         test: /\.html/, include: path.join(paths.APP, 'templates'),
         loader: "underscore-template-loader" },
       { 
-        test: /\.scss$/, include: path.join(paths.APP, 'public'),
+        test: /(\.css|\.scss)$/, include: [path.join(paths.APP, 'public'), path.join(__dirname, 'node_modules')],
         loader: ExtractTextPlugin.extract("style", "css!sass")
-      }
+      },
+      { test: /\.(jpe?g|png|gif)$/i, loader:"file" },      
     ],
   },
   output: {
@@ -56,7 +59,9 @@ module.exports = {
   plugins: [
     HtmlWebpackPluginConfig,
     new webpack.ProvidePlugin({
-      $: 'jquery',
+      'jQuery': 'jquery',
+      '$': 'jquery',
+      'global.jQuery': 'jquery',     
       _: 'underscore'
     }),
     new webpack.DefinePlugin({
