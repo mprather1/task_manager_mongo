@@ -58,8 +58,6 @@ var FormModalView = Backbone.Marionette.View.extend({
       notes: $('#notes_input').val()
     };
     
-    console.log($('option[name="user"]:selected').val())
-    
     this.model.set(taskAttrs);
     if(this.model.isValid(true)){
       this.model.save(null, {
