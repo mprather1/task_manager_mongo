@@ -5,7 +5,7 @@ var authenticationMiddleware = require('./middleware')
 var bcrypt = require('bcryptjs');
 
 passport.serializeUser(function (user, done) {
-  done(null, user._id)
+  done(null, user)
 })
 
 passport.deserializeUser(function (user, done) {

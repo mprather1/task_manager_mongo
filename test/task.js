@@ -23,7 +23,6 @@ describe('Tasks', function(){
       project: 'project',
       descrip: "descrip",
       priority: 'priority',
-      requestor: 'requestor',
       assigned_to: 'assigned_to',
       due_date: 'due_date',
       notes: 'notes'
@@ -62,7 +61,7 @@ describe('Tasks', function(){
   it('POST should add a SINGLE task on /tasks POST', function(done) {
     agent
     .post('/api/tasks/active')
-    .send({"item_number":52, "location_number":234, "project":"task", "descrip":"Descrip", "priority":"high", "requestor":"name", "assigned_to":"name", "due_date":"12-10-2016","notes":"note"})
+    .send({"item_number":52, "location_number":234, "project":"task", "descrip":"Descrip", "priority":"high", "assigned_to":"name", "due_date":"12-10-2016","notes":"note"})
     .end(function(err, res){
       expect(res).to.have.status(200);
       expect(res).to.be.json;
@@ -83,7 +82,6 @@ describe('Tasks', function(){
         expect(res.body[0]).to.have.property('project');
         expect(res.body[0]).to.have.property('descrip');
         expect(res.body[0]).to.have.property('priority');
-        expect(res.body[0]).to.have.property('requestor');
         expect(res.body[0]).to.have.property('assigned_to');
         expect(res.body[0]).to.have.property('due_date');
         expect(res.body[0]).to.have.property('notes');

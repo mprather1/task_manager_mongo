@@ -19,10 +19,6 @@ var Task = Backbone.Model.extend({
     priority: [{
       required: true
     }],
-    requestor: [{
-      required: true,
-      msg: 'You must enter a user!'
-    }],
     assigned_to: [{
       required: true,
       msg: 'You must choose an assigned user!'

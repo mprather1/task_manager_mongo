@@ -89,7 +89,7 @@ function removeUser(req, res){
   }
 }
 
-// Users
+// Tasks
 /////////////////////////////////////////////////////////////////
 
 function getAllTasks(req, res){
@@ -150,13 +150,20 @@ function createTask(req, res){
     res.status(401)
       .send('Not authorized')
   } else {  
+  var full_name = function(){
+    if (req.session.passport.user !== undefined){
+      return req.session.passport.user.first_name + " " + req.session.passport.user.last_name;  
+    } else {
+      return 'not logged in'
+    }
+  }    
   var task = new Task();
   task.completed = false;
   task.location_number = req.body.location_number;
   task.project = req.body.project;
   task.descrip = req.body.descrip;
   task.priority = req.body.priority;
-  task.requestor = req.body.requestor;
+  task.requestor = full_name()
   task.assigned_to = req.body.assigned_to;
   task.due_date = req.body.due_date;
   task.notes = req.body.notes;
